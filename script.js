@@ -6,16 +6,11 @@ let particleArray = [];
 let adjustX = 5;
 let adjustY = 10;
 
-// Scaling factors based on screen size
-const scaleFactor = window.innerWidth / 800; // Assume 800px as base width
-const textFontSize = 15 * scaleFactor; // Scale font size
-const particleSize = 0.8 * scaleFactor; // Scale particle size
-
 // handle mouse
 const mouse = {
     x: null,
     y: null,
-    radius: 25 * scaleFactor // Scale radius for touch interaction
+    radius: 25
 };
 
 window.addEventListener('mousemove', function(event) {
@@ -40,7 +35,7 @@ canvas.addEventListener('touchend', function() {
 });
 
 ctx.fillStyle = 'white';
-ctx.font = `${textFontSize}px Verdana`; // Dynamically adjust font size
+ctx.font = '15px Verdana';
 ctx.fillText('Archiology', 10, 30);
 const textCoordinates = ctx.getImageData(0, 0, 100, 100);
 
@@ -48,7 +43,7 @@ class Particle {
     constructor(x, y) {
         this.x = x;
         this.y = y;
-        this.size = particleSize; // Scale particle size
+        this.size = 0.8;
         this.baseX = this.x;
         this.baseY = this.y;
         this.density = (Math.random() * 40) + 5;
@@ -96,7 +91,7 @@ function init() {
             if (textCoordinates.data[(y * 4 * textCoordinates.width) + (x * 4) + 3] > 128) {
                 let positionX = x + adjustX;
                 let positionY = y + adjustY;
-                particleArray.push(new Particle(positionX * 3.5 * scaleFactor, positionY * 3.5 * scaleFactor)); // Scale particle positions
+                particleArray.push(new Particle(positionX * 3.5, positionY * 3.5));
             }
         }
     }
