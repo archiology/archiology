@@ -23,6 +23,7 @@ window.addEventListener('load', function () {
             this.force = 0;
             this.angle = 0;
             this.distance = 0;
+                // change mouse
             this.friction = Math.random() * 0.6 + 0.15;
             this.ease = Math.random() * 0.1 + 0.005;
         }
@@ -52,13 +53,14 @@ window.addEventListener('load', function () {
             this.context = context;
             this.canvasWidth = canvasWidth;
             this.canvasHeight = canvasHeight;
+                // Define text location
             this.textX = this.canvasWidth / 2;
-            this.textY = this.canvasHeight / 2;
+            this.textY = this.canvasHeight / 3;
             this.fontSize = 70;
             this.lineHeight = this.fontSize * 1.1;
             this.maxTextWidth = this.canvasWidth * 0.8;
             this.textInput = document.getElementById('textInput');
-            this.verticalOffset = -169;
+            this.verticalOffset = 0;
 
             this.textInput.addEventListener('keyup', (e) => {
                 if (e.key !== ' ') {
@@ -75,37 +77,37 @@ window.addEventListener('load', function () {
                 x: 0,
                 y: 0
             };
+
             window.addEventListener('mousemove', e => {
                 this.mouse.x = e.x;
                 this.mouse.y = e.y;
             });
             
             // handle touch events
-canvas.addEventListener('touchstart', function(event) {
-    mouse.x = event.touches[0].clientX;
-    mouse.y = event.touches[0].clientY;
-});
+            canvas.addEventListener('touchstart', (event) => {
+                this.mouse.x = event.touches[0].clientX;
+                this.mouse.y = event.touches[0].clientY;
+            });
 
-canvas.addEventListener('touchmove', function(event) {
-    mouse.x = event.touches[0].clientX;
-    mouse.y = event.touches[0].clientY;
-});
+            canvas.addEventListener('touchmove', (event) => {
+                this.mouse.x = event.touches[0].clientX;
+                this.mouse.y = event.touches[0].clientY;
+            });
 
-canvas.addEventListener('touchend', function() {
-    mouse.x = null;
-    mouse.y = null;
-    
-});
+            canvas.addEventListener('touchend', () => {
+                this.mouse.x = null;
+                this.mouse.y = null;
+            });
         }
-
+// Define the text 
         wrapText(text) {
             const gradient = this.context.createLinearGradient(0, 0, this.canvasWidth, this.canvasHeight);
-            gradient.addColorStop(0.3, 'red');
-            gradient.addColorStop(0.5, 'magenta');
-            gradient.addColorStop(0.7, 'yellow');
+            gradient.addColorStop(0.2, 'red');
+            gradient.addColorStop(0.3, 'magenta');
+            gradient.addColorStop(0.5, 'yellow');
             this.context.fillStyle = gradient;
             this.context.textAlign = 'center';
-            this.context.textBaseline = 'middle';
+            this.context.textBaseline = 'bottom';
             this.context.lineWidth = 3;
             this.context.strokeStyle = 'orange';
             this.context.font = this.fontSize + 'px Helvetica';
@@ -190,5 +192,4 @@ canvas.addEventListener('touchend', function() {
         ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas before redrawing
         effect.wrapText(effect.textInput.value || 'Archiology'); // Wrap text again after resizing
     });
-    
 });
