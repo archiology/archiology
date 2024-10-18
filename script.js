@@ -192,4 +192,22 @@ window.addEventListener('load', function () {
         ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas before redrawing
         effect.wrapText(effect.textInput.value || 'Archiology'); // Wrap text again after resizing
     });
+    
+      // Prevent scrolling on touchmove
+    window.addEventListener('touchmove', function (e) {
+        e.preventDefault();
+    }, { passive: false });
+
+    // Prevent scrolling on mouse wheel (if desired)
+    window.addEventListener('wheel', function (e) {
+        e.preventDefault();
+    }, { passive: false });
+
+    // Prevent scrolling on spacebar and arrow keys
+    window.addEventListener('keydown', function (e) {
+        if (['Space', 'ArrowUp', 'ArrowDown'].includes(e.code)) {
+            e.preventDefault();
+        }
+    });
+
 });
