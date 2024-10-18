@@ -1,24 +1,86 @@
-const canvas = document.getElementById('canvas1');
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-let particleArray = [];
-let adjustX = 5;
-let adjustY = 10;
+window.addEventListener('load', function () {
+    const canvas = document.getElementById('canvas1');
+    const ctx = canvas.getContext('2d', {
+        willReadFrequently: true
+    });
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-// handle mouse
-const mouse = {
-    x: null,
-    y: null,
-    radius: 25
-};
+    // Define the Particle class
+    class Particle {
+        constructor(effect, x, y, color) {
+            this.effect = effect;
+            this.x = Math.random() * this.effect.canvasWidth;
+            this.y = this.effect.canvasHeight;
+            this.color = color;
+            this.originX = x;
+            this.originY = y;
+            this.size = this.effect.gap;
+            this.dx = 0;
+            this.dy = 0;
+            this.vx = 0;
+            this.vy = 0;
+            this.force = 0;
+            this.angle = 0;
+            this.distance = 0;
+            this.friction = Math.random() * 0.6 + 0.15;
+            this.ease = Math.random() * 0.1 + 0.005;
+        }
 
-window.addEventListener('mousemove', function(event) {
-    mouse.x = event.x;
-    mouse.y = event.y;
-});
+        draw() {
+            this.effect.context.fillStyle = this.color;
+            this.effect.context.fillRect(this.x, this.y, this.size, this.size);
+        }
 
-// handle touch events
+        update() {
+            this.dx = this.effect.mouse.x - this.x;
+            this.dy = this.effect.mouse.y - this.y;
+            this.distance = this.dx * this.dx + this.dy * this.dy;
+            this.force = -this.effect.mouse.radius / this.distance;
+            this.angle = Math.atan2(this.dy, this.dx);
+            this.vx += this.force * Math.cos(this.angle);
+            this.vy += this.force * Math.sin(this.angle);
+
+            this.x += (this.vx *= this.friction) + (this.originX - this.x) * this.ease;
+            this.y += (this.vy *= this.friction) + (this.originY - this.y) * this.ease;
+        }
+    }
+
+    // Define the Effect class
+    class Effect {
+        constructor(context, canvasWidth, canvasHeight) {
+            this.context = context;
+            this.canvasWidth = canvasWidth;
+            this.canvasHeight = canvasHeight;
+            this.textX = this.canvasWidth / 2;
+            this.textY = this.canvasHeight / 2;
+            this.fontSize = 70;
+            this.lineHeight = this.fontSize * 1.1;
+            this.maxTextWidth = this.canvasWidth * 0.8;
+            this.textInput = document.getElementById('textInput');
+            this.verticalOffset = -169;
+
+            this.textInput.addEventListener('keyup', (e) => {
+                if (e.key !== ' ') {
+                    this.context.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
+                    this.wrapText(e.target.value);
+                }
+            });
+
+            // particle text
+            this.particles = [];
+            this.gap = 1;
+            this.mouse = {
+                radius: 20000,
+                x: 0,
+                y: 0
+            };
+            window.addEventListener('mousemove', e => {
+                this.mouse.x = e.x;
+                this.mouse.y = e.y;
+            });
+            
+            // handle touch events
 canvas.addEventListener('touchstart', function(event) {
     mouse.x = event.touches[0].clientX;
     mouse.y = event.touches[0].clientY;
@@ -32,82 +94,101 @@ canvas.addEventListener('touchmove', function(event) {
 canvas.addEventListener('touchend', function() {
     mouse.x = null;
     mouse.y = null;
+    
 });
+        }
 
-ctx.fillStyle = 'white';
-ctx.font = '15px Verdana';
-ctx.fillText('Archiology', 10, 30);
-const textCoordinates = ctx.getImageData(0, 0, 100, 100);
+        wrapText(text) {
+            const gradient = this.context.createLinearGradient(0, 0, this.canvasWidth, this.canvasHeight);
+            gradient.addColorStop(0.3, 'red');
+            gradient.addColorStop(0.5, 'magenta');
+            gradient.addColorStop(0.7, 'yellow');
+            this.context.fillStyle = gradient;
+            this.context.textAlign = 'center';
+            this.context.textBaseline = 'middle';
+            this.context.lineWidth = 3;
+            this.context.strokeStyle = 'orange';
+            this.context.font = this.fontSize + 'px Helvetica';
 
-class Particle {
-    constructor(x, y) {
-        this.x = x;
-        this.y = y;
-        this.size = 0.8;
-        this.baseX = this.x;
-        this.baseY = this.y;
-        this.density = (Math.random() * 40) + 5;
-    }
+            let linesArray = [];
+            let words = text.split(' ');
+            let lineCounter = 0;
+            let line = '';
 
-    draw() {
-        ctx.fillStyle = 'white';
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.closePath();
-        ctx.fill();
-    }
-
-    update() {
-        let dx = mouse.x - this.x;
-        let dy = mouse.y - this.y;
-        let distance = Math.sqrt(dx * dx + dy * dy);
-        let forceDirectionX = dx / distance;
-        let forceDirectionY = dy / distance;
-        let maxDistance = mouse.radius;
-        let force = (maxDistance - distance) / maxDistance;
-        let directionX = forceDirectionX * force * this.density;
-        let directionY = forceDirectionY * force * this.density;
-
-        if (distance < mouse.radius) {
-            this.x -= directionX;
-            this.y -= directionY;
-        } else {
-            if (this.x !== this.baseX) {
-                let dx = this.x - this.baseX;
-                this.x -= dx / 10;
+            for (let i = 0; i < words.length; i++) {
+                let testLine = line + words[i] + ' ';
+                if (this.context.measureText(testLine).width > this.maxTextWidth) {
+                    line = words[i] + ' ';
+                    lineCounter++;
+                } else {
+                    line = testLine;
+                }
+                linesArray[lineCounter] = line;
             }
-            if (this.y !== this.baseY) {
-                let dy = this.y - this.baseY;
-                this.y -= dy / 10;
+
+            let textHeight = this.lineHeight * lineCounter;
+            let y = this.canvasHeight / 2 - textHeight / 2;
+            linesArray.forEach((el, index) => {
+                this.context.fillText(el, this.textX, this.textY + (index * this.lineHeight));
+            });
+
+            this.convertToParticles();
+        }
+
+        convertToParticles() {
+            this.particles = [];
+            const pixels = this.context.getImageData(0, 0, this.canvasWidth, this.canvasHeight).data;
+            this.context.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
+
+            for (let y = 0; y < this.canvasHeight; y += this.gap) {
+                for (let x = 0; x < this.canvasWidth; x += this.gap) {
+                    const index = (y * this.canvasWidth + x) * 4;
+                    const alpha = pixels[index + 3];
+                    if (alpha > 0) {
+                        const red = pixels[index];
+                        const green = pixels[index + 1];
+                        const blue = pixels[index + 2];
+                        const color = `rgb(${red}, ${green}, ${blue})`;
+                        this.particles.push(new Particle(this, x, y, color));
+                    }
+                }
             }
+            console.log(this.particles);
+        }
+
+        render() {
+            this.particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+        }
+
+        resize(width, height) {
+            this.canvasWidth = width;
+            this.canvasHeight = height;
+            this.textX = this.canvasWidth / 2;
+            this.textY = this.canvasHeight / 2;
+            this.maxTextWidth = this.canvasWidth * 0.8;
         }
     }
-}
 
-function init() {
-    particleArray = [];
-    for (let y = 0, y2 = textCoordinates.height; y < y2; y++) {
-        for (let x = 0, x2 = textCoordinates.width; x < x2; x++) {
-            if (textCoordinates.data[(y * 4 * textCoordinates.width) + (x * 4) + 3] > 128) {
-                let positionX = x + adjustX;
-                let positionY = y + adjustY;
-                particleArray.push(new Particle(positionX * 3.5, positionY * 3.5));
-            }
-        }
+    const effect = new Effect(ctx, canvas.width, canvas.height);
+    effect.wrapText('Archiology');
+    effect.render();
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        effect.render();
+        requestAnimationFrame(animate);
     }
-}
+    animate();
 
-init();
-console.log(particleArray);
-
-function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    for (let i = 0; i < particleArray.length; i++) {
-        particleArray[i].draw();
-        particleArray[i].update();
-    }
-
-    requestAnimationFrame(animate);
-}
-animate();
+    window.addEventListener('resize', function(){
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        effect.resize(canvas.width, canvas.height);
+        ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas before redrawing
+        effect.wrapText(effect.textInput.value || 'Archiology'); // Wrap text again after resizing
+    });
+    
+});
