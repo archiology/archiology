@@ -55,7 +55,7 @@ window.addEventListener('load', function () {
             this.canvasHeight = canvasHeight;
                 // Define text location
             this.textX = this.canvasWidth / 2;
-            this.textY = this.canvasHeight / 3;
+            this.textY = this.canvasHeight / 4;
             this.fontSize = 70;
             this.lineHeight = this.fontSize * 1.1;
             this.maxTextWidth = this.canvasWidth * 0.8;
@@ -100,42 +100,47 @@ window.addEventListener('load', function () {
             });
         }
 // Define the text 
-        wrapText(text) {
-            const gradient = this.context.createLinearGradient(0, 0, this.canvasWidth, this.canvasHeight);
-            gradient.addColorStop(0.2, 'red');
-            gradient.addColorStop(0.3, 'magenta');
-            gradient.addColorStop(0.5, 'yellow');
-            this.context.fillStyle = gradient;
-            this.context.textAlign = 'center';
-            this.context.textBaseline = 'bottom';
-            this.context.lineWidth = 3;
-            this.context.strokeStyle = 'orange';
-            this.context.font = this.fontSize + 'px Helvetica';
+wrapText(text) {
+    const gradient = this.context.createLinearGradient(0, 0, this.canvasWidth, this.canvasHeight);
+    gradient.addColorStop(0.1, 'red');
+    gradient.addColorStop(0.2, 'magenta');
+    gradient.addColorStop(0.4, 'yellow');
+    this.context.fillStyle = gradient;
+    this.context.textAlign = 'center';
+    this.context.textBaseline = 'middle';  // Use 'middle' for vertical centering
+    this.context.lineWidth = 3;
+    this.context.strokeStyle = 'orange';
+    this.context.font = this.fontSize + 'px Helvetica';
 
-            let linesArray = [];
-            let words = text.split(' ');
-            let lineCounter = 0;
-            let line = '';
+    let linesArray = [];
+    let words = text.split(' ');
+    let lineCounter = 0;
+    let line = '';
 
-            for (let i = 0; i < words.length; i++) {
-                let testLine = line + words[i] + ' ';
-                if (this.context.measureText(testLine).width > this.maxTextWidth) {
-                    line = words[i] + ' ';
-                    lineCounter++;
-                } else {
-                    line = testLine;
-                }
-                linesArray[lineCounter] = line;
-            }
-
-            let textHeight = this.lineHeight * lineCounter;
-            let y = this.canvasHeight / 2 - textHeight / 2;
-            linesArray.forEach((el, index) => {
-                this.context.fillText(el, this.textX, this.textY + (index * this.lineHeight));
-            });
-
-            this.convertToParticles();
+    for (let i = 0; i < words.length; i++) {
+        let testLine = line + words[i] + ' ';
+        // Only break if the testLine exceeds maxTextWidth
+        if (this.context.measureText(testLine).width > this.maxTextWidth) {
+            linesArray[lineCounter] = line.trim(); // Store current line
+            line = words[i] + ' ';  // Start new line with the current word
+            lineCounter++;
+        } else {
+            line = testLine;
         }
+    }
+    linesArray[lineCounter] = line.trim(); // Add last line
+
+    let textHeight = this.lineHeight * (lineCounter + 1);  // Total height of the text block
+    let y = this.canvasHeight / 3 - textHeight / 1;  // Center vertically
+
+    linesArray.forEach((el, index) => {
+        // Use textX and dynamic Y positioning to center each line vertically
+        this.context.fillText(el, this.textX, y + (index * this.lineHeight));
+    });
+
+    this.convertToParticles(); // Convert the new text into particles
+}
+
 
         convertToParticles() {
             this.particles = [];
@@ -169,13 +174,13 @@ window.addEventListener('load', function () {
             this.canvasWidth = width;
             this.canvasHeight = height;
             this.textX = this.canvasWidth / 2;
-            this.textY = this.canvasHeight / 2;
+            this.textY = this.canvasHeight / 4;
             this.maxTextWidth = this.canvasWidth * 0.8;
         }
     }
 
     const effect = new Effect(ctx, canvas.width, canvas.height);
-    effect.wrapText('Archiology');
+    effect.wrapText('Archiology.');
     effect.render();
 
     function animate() {
@@ -190,7 +195,7 @@ window.addEventListener('load', function () {
         canvas.height = window.innerHeight;
         effect.resize(canvas.width, canvas.height);
         ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas before redrawing
-        effect.wrapText(effect.textInput.value || 'Archiology'); // Wrap text again after resizing
+        effect.wrapText(effect.textInput.value || 'Archiology.'); // Wrap text again after resizing
     });
     
       // Prevent scrolling on touchmove
