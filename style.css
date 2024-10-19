@@ -5,10 +5,10 @@
 }
 
 canvas {
-    background: black;
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 1; /* Lower z-index so canvas is behind the button */
 }
 
 body {
@@ -16,3 +16,8 @@ overflow: hidden;
 background: black;
 
 }
+
+#textInput {
+    display: none;
+}
+
