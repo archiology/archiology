@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Archiology</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Navigation Bar Styling */
+        nav {
+            display: flex;
+            justify-content: space-between; /* Align logo left and nav links right */
+            align-items: center; /* Vertically center items in the nav */
+            background-color: black; /* Background color for the nav bar */
+            padding: 10px 20px;
+            z-index: 10; /* Higher z-index so button is above the canvas */
+            position: relative; /* For manual positioning */
+
+        }
+
+        /* Logo styling */
+        .logo {
+            font-size: 20px; /* Font size for logo */
+            color: white;
+            font-family: Helvetica, sans-serif;
+            text-decoration: none; /* No underline on logo */
+        }
+        
+        .logo:hover {
+    /* No text-shadow effect on hover for the logo */
+    text-shadow: none;
+}
+
+        /* Navigation Links Styling */
+        nav ul {
+            display: flex;
+            list-style: none; /* Removes bullet points from the list */
+        }
+
+        nav ul li {
+            margin-left: 20px; /* Space between the page titles */
+        }
+
+        nav ul li a {
+            color: #dbdbdb; /* Light grey text */
+            text-decoration: none; /* Removes underline */
+            font-size: 12px; /* Font size */
+            font-family: Helvetica, sans-serif; /* Font styling */
+        }
+
+        nav ul li a:hover {
+            text-shadow: 0 0 4px #fff, 0 0 8px #fff;
+        }
+
+        p {
+            background-color: black; /* Set a background color */
+            color: white; /* Set text color to contrast with background */
+            font-family: Helvetica, sans-serif;
+            font-size: 13px;
+            position: absolute;
+            top: 10%;
+            padding: 20px;
+        }
+
+        a {
+            color: white;
+            font-family: Helvetica, sans-serif;
+            font-size: 13px;
+        }
+
+        a:hover {
+            text-shadow: 0 0 4px #fff, 0 0 8px #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <!-- Text Logo -->
+        <a href="index.html" class="logo">Archiology.Architects</a>
+
+        <!-- Navigation Links -->
+        <ul>
+            <li><a href="labs.html">Labs</a></li>
+            <li><a href="architects.html">Architects</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+<p>Coming soon.        
+    </p>        
+
+</body>
+</html>
