@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Archiology</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Navigation Bar Styling */
+        nav {
+            display: flex;
+            justify-content: space-between; /* Align logo left and nav links right */
+            align-items: center; /* Vertically center items in the nav */
+            background-color: black; /* Background color for the nav bar */
+            padding: 10px 20px;
+            z-index: 10; /* Higher z-index so button is above the canvas */
+            position: relative; /* For manual positioning */
+
+        }
+
+        /* Logo styling */
+        .logo {
+            font-size: 20px; /* Font size for logo */
+            color: white;
+            font-family: Helvetica, sans-serif;
+            text-decoration: none; /* No underline on logo */
+        }
+        
+        .logo:hover {
+    /* No text-shadow effect on hover for the logo */
+    text-shadow: none;
+}
+
+        /* Navigation Links Styling */
+        nav ul {
+            display: flex;
+            list-style: none; /* Removes bullet points from the list */
+        }
+
+        nav ul li {
+            margin-left: 20px; /* Space between the page titles */
+        }
+
+        nav ul li a {
+            color: #dbdbdb; /* Light grey text */
+            text-decoration: none; /* Removes underline */
+            font-size: 12px; /* Font size */
+            font-family: Helvetica, sans-serif; /* Font styling */
+        }
+
+        nav ul li a:hover {
+            text-shadow: 0 0 4px #fff, 0 0 8px #fff;
+        }
+
+        p {
+            background-color: black; /* Set a background color */
+            color: white; /* Set text color to contrast with background */
+            font-family: Helvetica, sans-serif;
+            line-height: 1.2; /* This sets the line height to 1.5 times the font size */
+            font-size: 13px;
+            position: absolute;
+            top: 10%;
+            padding: 20px;
+            max-width: 400px; /* Set a max width */
+            text-align: justify
+
+        }
+
+        a {
+            color: white;
+            font-family: Helvetica, sans-serif;
+            font-size: 13px;
+        }
+
+        a:hover {
+            text-shadow: 0 0 4px #fff, 0 0 8px #fff;
+        }
+        
+        button {
+            background-color: #0071E3; /* Transparent background */
+            text-align: center;
+            color: #dbdbdb; /* Initial text color */
+            font-size: 13px; /* Font size */
+            border: 2px solid #0071E3; /* 2px solid border with initial text color */
+            border-radius: 20px; /* Rounded corners */
+            cursor: pointer; /* Pointer on hover */
+            transition: color 0.3s ease, background-color 0.3s ease, border 0.3s ease; /* Smooth hover effect */
+            z-index: 10; /* Ensure it's on top */
+            font-family: Helvetica, sans-serif;
+            padding: 4px 8px; /* Adjust this for height and width (top-bottom, left-right) */
+
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <!-- Text Logo -->
+        <a href="index.html" class="logo">Archiology.Labs</a>
+
+        <!-- Navigation Links -->
+        <ul>
+            <li><a href="labs.html">Labs</a></li>
+            <li><a href="architects.html">Architects</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+<p>
+    
+    <span style="font-weight:600;">Instructions</span> <br><br>
+    
+    1.	Select and Pay <br><span style="color: darkgrey; font-weight:100;">Choose the required service and complete the payment.</span><br><br>
+	2.	Receive Sample Kit <br><span style="color: darkgrey; font-weight:100;">A sample kit will be sent to your shipping address.</span><br><br>
+	3.	Collect Sample <br><span style="color: darkgrey; font-weight:100;">Collect the relevant sample using the provided instructions.</span><br><br>
+	4.	Return Sample <br><span style="color: darkgrey; font-weight:100;">Use the included prepaid return label to send it to our labs.</span><br><br>        
+        
+     <br><br><br> 
+<span style="font-weight:600;">Forensic Services</span> <br><br> 
+        
+        Paint Analysis <span style="font-size:1.1em; float: right;">$19&nbsp;&nbsp;&nbsp;&nbsp;</span><br>
+        <span style="color: darkgrey;">
+        • Colour value  <br> 
+        • Gloss value <span style="float: right;"><a href="https://buy.stripe.com/aEUaGG80v5xT1FufYY"><button>Order</button></a></span> <br> 
+        • Thickness</span> <br>     
+<br> 
+        
+        Mortar Analysis <span style="font-size:1.1em; float: right;">$99&nbsp;&nbsp;&nbsp;&nbsp;</span><br> 
+        <span style="color: darkgrey;">
+        • Grain size distribution  <br> 
+        • Material content <span style="float: right;"><a href="https://buy.stripe.com/3cs8yy3Kff8tac05kl"><button>Order</button></a></span> <br> 
+        • Colour analysis</span><br><br>
+    
+        <br><br><br><span style="color: lightgrey; font-weight:100;">Our lab services are conducted in accordance with relevant Australian (AS) and International (ISO) standards, utilising the latest technological and specialised testing methods. All testing complies with ISO/IEC 17025 requirements to ensure consistent and reliable results.</span>        
+
+
+</body>
+</html>
