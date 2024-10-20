@@ -57,6 +57,8 @@
             font-family: Helvetica, sans-serif;
             opacity: 0; /* Start hidden */
             transition: opacity 3s ease; /* Fade effect */
+            max-width: 250px; /* Set a max width */
+            min-width: 250px; /* Set a max width */
         }
 
         .button {
@@ -70,7 +72,7 @@
             cursor: pointer; /* Pointer on hover */
             z-index: 10; /* Ensure it's on top */
             position: absolute; /* Position it absolutely */
-            top: calc(33% + 50px); /* Adjust for spacing below sentence */
+            top: calc(32% + 50px); /* Adjust for spacing below sentence */
             left: 50%; /* Center horizontally */
             transform: translate(-50%, 0); /* Center */
             margin-top: 20px; /* Space between sentence and button */
@@ -119,7 +121,7 @@
 
     <script src="script.js"></script>
     
-    <div class="sentence">Forensic services for testing of <br>  architectural construction materials. </div>
+    <div class="sentence">Forensic services for testing of architectural construction materials. </div>
     
     <!-- Button with JavaScript Navigation -->
     <button class="button" onclick="window.location.href='labs.html';">See services</button>
