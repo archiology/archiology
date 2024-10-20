@@ -102,9 +102,9 @@ window.addEventListener('load', function () {
 // Define the text 
 wrapText(text) {
     const gradient = this.context.createLinearGradient(0, 0, this.canvasWidth, this.canvasHeight);
-    gradient.addColorStop(0.1, 'red');
-    gradient.addColorStop(0.2, 'magenta');
-    gradient.addColorStop(0.4, 'yellow');
+    gradient.addColorStop(0.2, 'red');
+    gradient.addColorStop(0.3, 'magenta');
+    gradient.addColorStop(0.5, 'yellow');
     this.context.fillStyle = gradient;
     this.context.textAlign = 'center';
     this.context.textBaseline = 'middle';  // Use 'middle' for vertical centering
@@ -131,7 +131,7 @@ wrapText(text) {
     linesArray[lineCounter] = line.trim(); // Add last line
 
     let textHeight = this.lineHeight * (lineCounter + 1);  // Total height of the text block
-    let y = this.canvasHeight / 3 - textHeight / 1;  // Center vertically
+    let y = this.canvasHeight / 3 - textHeight / 2;  // Center vertically
 
     linesArray.forEach((el, index) => {
         // Use textX and dynamic Y positioning to center each line vertically
