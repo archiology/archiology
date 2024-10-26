@@ -61,14 +61,18 @@
             text-shadow: 0 0 4px #fff, 0 0 8px #fff;
         }
 
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      padding: 20px;
-      background-color: #F3F2F8;
-    }
+   html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #F3F2F8;
+}
 
  .vertical-list, .grid {
   display: flex;
@@ -77,6 +81,8 @@
   width: 100%;
   max-width: 300px;
   margin-top: 8vh; /* Moves elements down by 10% of viewport height */
+   padding-left: 10px;
+      padding-right: 10px;
 }
 
 
@@ -132,6 +138,7 @@
   overflow: hidden;
   max-width: 270px;
   min-height: 470px;
+
 }
 
 .content {
@@ -227,6 +234,8 @@
         padding: 10px 0;
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
+          padding-left: 10px;
+  padding-right: 10px;
       }
 
       .item-box {
