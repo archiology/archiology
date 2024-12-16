@@ -14,17 +14,16 @@
 
         /* Navigation Bar Styling */
          nav {
-  display: flex;
-  justify-content: space-between; /* Align logo left and nav links right */
-  align-items: center; /* Vertically center items in the nav */
-  background-color: black; /* Background color for the nav bar */
-  padding: 10px 20px;
-  z-index: 10; /* Higher z-index so button is above the canvas */
-  position: fixed; /* Fixes nav bar to top of viewport */
-  width: 100%; /* Makes nav span the full width of the page */
-  top: 0; /* Positions nav at the very top of the page */
+          display: flex;
+          justify-content: space-between; /* Align logo left and nav links right */
+          align-items: center; /* Vertically center items in the nav */
+          background-color: black; /* Background color for the nav bar */
+          padding: 10px 20px;
+          z-index: 10; /* Higher z-index so button is above the canvas */
+          position: fixed; /* Fixes nav bar to top of viewport */
+          width: 100%; /* Makes nav span the full width of the page */
+          top: 0; /* Positions nav at the very top of the page */
 }
-
         /* Logo styling */
         .logo {
             font-size: 20px;
@@ -122,20 +121,102 @@
             text-shadow: 0 0 4px #fff, 0 0 8px #fff;
     
 }
+
+
+
+/* Media Query for Smaller Screens */
+@media (max-width: 500px) {
+            
+        /* Hide the nav links on smaller screens */
+.nav-links {
+    display: none; /* Initially hidden */
+    flex-direction: column; /* Stack items vertically */
+    position: fixed; /* Covers the entire viewport */
+    top: 0;
+    left: 0; /* Start from the top-left corner */
+    background-color: black; /* Full-screen background color */
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    padding-top: 50px; /* Optional padding inside the menu */
+    padding-left: 20px; /* Optional padding inside the menu */
+    z-index: 1000; /* Ensure it appears above other elements */
+}
+
+
+/* Show the menu when activated */
+.nav-links.active {
+    display: flex; /* Show the nav links */
+}
+    
+nav ul li a {
+    color: #dbdbdb;
+    text-decoration: none;
+    font-size: 18px;
+    font-family: Helvetica, sans-serif;
+    
+        }
+
+/* Hamburger Button Styling */
+.hamburger {
+    display: none; /* Hidden by default */
+    flex-direction: column; /* Stack the lines */
+    cursor: pointer; /* Pointer for interaction */
+    z-index: 1100; /* Above the nav */
+}
+
+.hamburger .line {
+    width: 17px;
+    height: 1px;
+    background-color: white;
+    margin: 4px 0;
+    transition: all 0.3s ease; /* Smooth animation */
+    transform-origin: center; /* Rotate around the center of the line */
+}
+
+/* Animate hamburger into an "X" */
+.hamburger.active .line:nth-child(1) {
+    transform: rotate(45deg) translateY(6px); /* Adjust translation to center */
+}
+
+.hamburger.active .line:nth-child(2) {
+    transform: rotate(-45deg) translateY(-6px); /* Adjust translation to center */
+}
+
+/* Default Navigation Links Styling for Large Screens */
+nav ul {
+    display: flex; /* Ensure nav links are visible on larger screens */
+    list-style: none;
+}
+
+    
+    .nav-links {
+        display: none; /* Hide dropdown menu on smaller screens */
+    }
+
+    .hamburger {
+        display: flex; /* Show hamburger button */
+    }
+
+
+}
     </style>
 </head>
 <body>
     <!-- Navigation Bar -->
-    <nav>
-        <a href="index.html" class="logo">Archiology.</a>
-        <ul>
-            <li><a href="architecture.html">Architecture</a></li>
-            <li><a href="development.html">Development</a></li>
-            <li><a href="labs.html">Labs</a></li>
-            <li><a href="industrial.html">Industrial</a></li>
-            <li><a href="about.html">About</a></li>
-        </ul>
-    </nav>
+<nav>
+    <a href="index.html" class="logo">Archiology.</a>
+    <div class="hamburger">
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+    <ul class="nav-links">
+        <li><a href="architecture.html">Architecture</a></li>
+        <li><a href="development.html">Development</a></li>
+        <li><a href="labs.html">Labs</a></li>
+        <li><a href="industrial.html">Industrial</a></li>
+        <li><a href="about.html">About</a></li>
+    </ul>
+</nav>
 
     <!-- About Us Section -->
     <section class="content-wrapper">
@@ -153,5 +234,35 @@
         <h3>Copyright © Archiology Australia</h3>    
         <h3>ABN 73 593 175 983</h3>    
     </section>
+    
+<script>
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    const body = document.body;
+
+    // Toggle menu open/close
+    hamburger.addEventListener('click', () => {
+        const isActive = hamburger.classList.toggle('active');
+        navLinks.classList.toggle('active');
+        body.style.overflow = isActive ? 'hidden' : ''; // Prevent scrolling when menu is active
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+            body.style.overflow = ''; // Restore scrolling
+        }
+    });
+
+    // Accessibility: Set ARIA attributes
+    hamburger.setAttribute('aria-label', 'Toggle navigation menu');
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.addEventListener('click', () => {
+        const isExpanded = hamburger.classList.contains('active');
+        hamburger.setAttribute('aria-expanded', isExpanded);
+    });
+</script>
 </body>
 </html>
