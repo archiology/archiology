@@ -1,0 +1,208 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archiology</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Helvetica, sans-serif;
+            background-color: #161617;
+            color: #333;
+        }
+
+        /* Navigation Bar Styling */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: black;
+            padding: 10px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 20px;
+            color: white;
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: #dbdbdb;
+            text-decoration: none;
+            font-size: 12px;
+        }
+
+        /* Horizontal Scroll Container Styling */
+.h-stack {
+    display: flex;
+    gap: 20px; /* Spacing between tiles */
+    padding: 20px 15px; /* Padding: vertical and horizontal */
+    margin-top: 80px; /* Adjust for the fixed navbar */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    scroll-snap-type: x mandatory; /* Enable scroll snapping */
+    position: relative; /* For pseudo-elements */
+}
+
+.h-stack > .tile {
+    scroll-snap-align: center; /* Snap tiles to center instead of start */
+
+}
+        
+        p {
+    font-size: 17px;
+    font-weight: 100;
+    color: dimgray;
+            
+            
+        }
+.tile {
+    width: 360px;
+    height: 650px;
+    background-color: transparent;
+    border-radius: 30px;
+    box-shadow: 0 4px 10px rgba(248, 248, 248, 0.1);
+    padding: 20px;
+    flex-shrink: 0; /* Prevent tiles from shrinking */
+    scroll-snap-align: start; /* Snap tiles to start position */
+    display: flex;
+    flex-direction: column; /* Stack other content below the header */
+    align-items: flex-start; /* Align items to the left */
+    justify-content: flex-start;
+    text-align: left;
+}
+
+.tile .tile-header {
+    display: flex; /* Align the image and title horizontally */
+    align-items: center; /* Vertically align the items */
+    gap: 15px; /* Space between the image and the title */
+    margin-bottom: 20px; /* Space between the header and the next content */
+}
+        
+        .tile-footer {
+    margin-top: auto;
+    width: 100%;
+    text-align: left;
+    padding-top: 10px;
+}
+
+        
+   .tile-footer p {
+    font-size: 13px; /* Adjust font size as needed */
+    font-weight: 300;
+    color: #gray; /* Adjust text color */
+    margin-bottom: -12px;
+}
+        
+    .tile-footer h1 {
+    font-size: 13px; /* Adjust font size as needed */
+    font-weight: 500;
+    color: #gray; /* Adjust text color */
+    margin-bottom: -12px;
+    line-height: 1.2rem;
+
+}
+
+.tile img {
+    width: 70px;
+    height: 70px;
+    border-radius: 12px;
+}
+    
+
+.tile h3 {
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 1.8rem;
+    color: black;
+    margin: 0; /* Remove default margins */
+}
+
+        .tile .btn {
+            display: inline-block;
+            font-size: 15px;
+            font-weight: 300;
+            color: white;
+            background-color: #161617;
+            padding: 5px 11px;
+            border-radius: 30px;
+            text-decoration: none;
+            margin-top: auto;
+                margin-bottom: -10px;
+
+        }
+
+        .tile .btn:hover {
+            background-color: #333;
+        }
+
+        /* Custom Scrollbar Styling */
+        .h-stack::-webkit-scrollbar {
+            height: 10px;
+        }
+
+        .h-stack::-webkit-scrollbar-thumb {
+            background-color: #ccc;
+            border-radius: 5px;
+        }
+
+        .h-stack::-webkit-scrollbar-track {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="index.html" class="logo">Archiology.</a>
+        <ul>
+            <li><a href="architecture.html">Architecture</a></li>
+            <li><a href="development.html">Development</a></li>
+            <li><a href="labs.html">Labs</a></li>
+            <li><a href="industrial.html">Industrial</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- Horizontal Stack Section -->
+    <div class="h-stack">
+<div class="tile" style="background-image: url('https://res.cloudinary.com/dwhkm1mmn/image/upload/v1734348159/aoppbackgroun_ldil9h.png'); background-size: cover; background-position: center;">
+    <div class="tile-header">
+        <img src="https://res.cloudinary.com/dwhkm1mmn/image/upload/v1734268470/Screenshot_2024-12-15_at_11.43.14_pm_orcoud.png" alt="Icon 1">
+        <h3>Golden Ratio Calculator</h3>
+    </div>
+    <p>Quickly determine the golden sum of a given number based on its short, long, or total length.</p>
+    <a href="project1.html" class="btn">More</a>
+
+    </div>
+    <div class="tile" style="background-image: url('https://res.cloudinary.com/dwhkm1mmn/image/upload/v1734350597/backgro27_lppxg5.png'); background-size: cover; background-position: center;">
+    <div class="tile-header">
+        <img src="https://res.cloudinary.com/dwhkm1mmn/image/upload/v1734349491/icon_damage_dictionary_bpvljb.png" alt="Icon 1">
+        <h3>Damage Diagnostic Dictionary</h3>
+    </div>
+    <p>An extensive resource for diagnosing and understanding building material damage types, and the correct way to repair them.</p>
+    <a href="project1.html" class="btn">More</a>
+
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archiology</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html, body {
+    height: 100%;
+    overflow: auto;
+}
+
+        /* Navigation Bar Styling */
+         nav {
+  display: flex;
+  justify-content: space-between; /* Align logo left and nav links right */
+  align-items: center; /* Vertically center items in the nav */
+  background-color: black; /* Background color for the nav bar */
+  padding: 10px 20px;
+  z-index: 10; /* Higher z-index so button is above the canvas */
+  position: fixed; /* Fixes nav bar to top of viewport */
+  width: 100%; /* Makes nav span the full width of the page */
+  top: 0; /* Positions nav at the very top of the page */
+}
+
+        /* Logo styling */
+        .logo {
+            font-size: 20px;
+            color: white;
+            font-family: Helvetica, sans-serif;
+            text-decoration: none;
+        }
+        
+        .logo:hover {
+            text-shadow: none;
+        }
+
+        /* Navigation Links Styling */
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: #dbdbdb;
+            text-decoration: none;
+            font-size: 12px;
+            font-family: Helvetica, sans-serif;
+        }
+
+        nav ul li a:hover {
+            text-shadow: 0 0 4px #fff, 0 0 8px #fff;
+        }
+
+
+                /* Add padding above the grid */
+.about-details {
+    padding-top: 80px;
+    column-count: 1;
+    max-width: 475px;
+    margin: 0 auto;
+    overflow: visible; /* Allow content to overflow horizontally */
+    position: relative;
+}
+                   }
+            /* Centered Text Section */
+            .about-intro {
+                text-align: left;
+                margin-bottom: 40px;
+            }
+
+            /* Justify text in the About section */
+            .about-details p {
+                text-align: left;
+                    font-size: 0.8rem; /* Adjust the paragraph font size */
+                                color: white;
+                    line-height: 1.2; /* Adjust the line-height for paragraphs */
+                    margin-bottom: 12px; /* Add space after each paragraph */
+                    font-weight: 300;
+                    font-family: Helvetica, sans-serif;
+                padding-left: 20px;
+                 padding-right: 20px;
+
+                }
+
+                .about-details h1 {
+                text-decoration: none; /* Removes the underline */
+                text-align: center;
+                font-size: 30px;
+                color: white;
+                line-height: 1rem;
+                margin-bottom: -0.8rem; /* Add space after each paragraph */
+                font-family: Helvetica, sans-serif;
+                font-weight: 400;
+
+
+                    }
+        
+        
+                      .about-details h2 {
+                text-decoration: none; /* Removes the underline */
+                text-align: center;
+                font-size: 18px;
+                color: white;
+                line-height: 1rem;
+                margin-bottom: 1rem; /* Add space after each paragraph */
+                font-family: Helvetica, sans-serif;
+                font-weight: 400;
+
+
+                    }
+        
+                              .about-details h3 {
+                text-decoration: none; /* Removes the underline */
+                text-align: center;
+                font-size: 16px;
+                color: gray;
+                line-height: 1rem;
+                margin-bottom: 1rem; /* Add space after each paragraph */
+                                  
+                font-family: Helvetica, sans-serif;
+                font-weight: 300;
+
+
+                    }
+        
+                                      .about-details a {
+                text-decoration: none; /* Removes the underline */
+                text-align: center;
+                font-size: 13px;
+                color: gray;
+                line-height: 1rem;
+                margin-bottom: 1rem; /* Add space after each paragraph */
+                                  
+                font-family: Helvetica, sans-serif;
+                font-weight: 300;
+
+
+                    }
+
+            img {
+              max-width: 500px;
+              max-height: 400px;
+              display: block;
+              margin-left: auto;
+              margin-right: auto;
+              width: 85%;
+            }
+            
+            .icon-image {
+    max-width: 100px; /* Makes the image span the full viewport width */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+        </style>
+   </head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="index.html" class="logo">Archiology.</a>
+        <ul>
+            <li><a href="architecture.html">Architecture</a></li>
+            <li><a href="development.html">Development</a></li>
+            <li><a href="labs.html">Labs</a></li>
+            <li><a href="industrial.html">Industrial</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+
+        <main>
+            <section class="about-details">
+                <h1>Golden Ratio Calculator</h1>
+                <br />
+                <br>
+                
+                <br /><img
+                    src="https://res.cloudinary.com/dwhkm1mmn/image/upload/v1734267759/Screenshots_zyxmrt.png"
+                    alt="Image 3"
+                    draggable="false" /><br /><br />
+                <p>
+                    The Golden Ratio Calculator is a simple tool that allows you to divide a segment into parts that
+                    adhere to the golden ratio. Often called the divine proportion, this mathematical principle has been
+                    widely used by designers, architects, photographers, and artists to create harmonious and visually
+                    appealing proportions. With this tool, you can quickly determine the golden sum of a given number
+                    based on its short, long, or total length. 
+                </p><br /><br />
+                
+                <br /><img
+                    src="https://res.cloudinary.com/dwhkm1mmn/image/upload/v1734268470/Screenshot_2024-12-15_at_11.43.14_pm_orcoud.png"
+                    alt="Image 3"
+                    class="icon-image"
+                    draggable="false" /><br />
+                
+                <h2>Golden Ratio Calculator</h2>
+                <h3>Available from the App Store for $0.99 </h3>
+                
+                <img
+                    src="https://res.cloudinary.com/dwhkm1mmn/image/upload/v1734267824/Download_on_the_App_Store_Badge_US-UK_RGB_wht_092917_p8azq0.svg"
+                    alt="Image 3"
+                    class="icon-image"
+                    draggable="false" /><br /><br/><br/>
+                
+                <hr style="border: 1px solid gray; margin: 20px ;">
+
+                
+                                <h3><a href="project1-privacypolicy.html">Privacy Policy</a></h3>
+
+
+                
+             </section>
+        </main>
+
+        <script src="script.js"></script>
+    </body>
+</html>
