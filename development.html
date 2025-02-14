@@ -75,6 +75,15 @@
             
             
         }
+        
+                p2 {
+    font-size: 16px;
+    font-weight: 100;
+    color: #dbdbdb;
+                        margin-top: -8px
+            
+            
+        }
 .tile {
     width: 360px;
     height: 650px;
@@ -136,6 +145,14 @@
     color: black;
     margin: 0; /* Remove default margins */
 }
+        
+        .tile h4 {
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 1.8rem;
+    color: white;
+    margin: 0; /* Remove default margins */
+}
 
         .tile .btn {
             display: inline-block;
@@ -171,35 +188,47 @@
 <body>
     <!-- Navigation Bar -->
     <nav>
-        <a href="index.html" class="logo">Archiology.</a>
-        <ul>
-            <li><a href="architecture.html">Architecture</a></li>
+    <a href="index.html" class="logo">Archiology.</a>
+    <div class="hamburger">
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+    <ul class="nav-links">
+   <!-- <li><a href="architecture.html">Architecture</a></li> -->
             <li><a href="development.html">Development</a></li>
-            <li><a href="labs.html">Labs</a></li>
-            <li><a href="industrial.html">Industrial</a></li>
-            <li><a href="about.html">About</a></li>
-        </ul>
-    </nav>
+          <!--   <li><a href="labs.html">Labs</a></li>  -->
+           <!--  <li><a href="industrial.html">Industrial</a></li>  -->
+            <li><a href="about.html">About</a></li> 
+    </ul>
+</nav>
 
     <!-- Horizontal Stack Section -->
     <div class="h-stack">
-<div class="tile" style="background-image: url('https://res.cloudinary.com/dwhkm1mmn/image/upload/v1734348159/aoppbackgroun_ldil9h.png'); background-size: cover; background-position: center;">
+<div class="tile" style="background-image: url('https://res.cloudinary.com/dwhkm1mmn/image/upload/v1739523900/app_frame_orh3ne.png'); background-size: cover; background-position: center;">
+    <div class="tile-header">
+        <img src="https://res.cloudinary.com/dwhkm1mmn/image/upload/v1739521903/appicon_mask_ptgypk.png" alt="Icon 1">
+        <h4>Building Damage Dictionary</h4>
+    </div>
+    <p2>An extensive resource for diagnosing and understanding building material damage types, and the correct way to repair them.</p2>
+    <a href="project3.html" class="btn">More</a>
+        
+         </div>
+        <div class="tile" style="background-image: url('https://res.cloudinary.com/dwhkm1mmn/image/upload/v1739523837/333_etznqv.png'); background-size: cover; background-position: center;">
     <div class="tile-header">
         <img src="https://res.cloudinary.com/dwhkm1mmn/image/upload/v1734268470/Screenshot_2024-12-15_at_11.43.14_pm_orcoud.png" alt="Icon 1">
         <h3>Golden Ratio Calculator</h3>
     </div>
     <p>Quickly determine the golden sum of a given number based on its short, long, or total length.</p>
     <a href="project1.html" class="btn">More</a>
-
-    </div>
-    <div class="tile" style="background-image: url('https://res.cloudinary.com/dwhkm1mmn/image/upload/v1734350597/backgro27_lppxg5.png'); background-size: cover; background-position: center;">
+    
+       </div>
+    <div class="tile" style="background-image: url('https://res.cloudinary.com/dwhkm1mmn/image/upload/v1739524636/233_yrwipz.png'); background-size: cover; background-position: center;">
     <div class="tile-header">
-        <img src="https://res.cloudinary.com/dwhkm1mmn/image/upload/v1734349491/icon_damage_dictionary_bpvljb.png" alt="Icon 1">
-        <h3>Damage Diagnostic Dictionary</h3>
+        <img src="https://res.cloudinary.com/dwhkm1mmn/image/upload/v1739524779/appicon_mask_lfrete.png" alt="Icon 1">
+        <h3>Ratio Simplifier</h3>
     </div>
-    <p>An extensive resource for diagnosing and understanding building material damage types, and the correct way to repair them.</p>
-    <a href="project1.html" class="btn">More</a>
-
+    <p>Reduces any given ratio to its simplest form. Featuring a user-friendly and visually appealing interface.</p>
+    <a href="project2.html" class="btn">More</a>
 </div>
 </div>
 
